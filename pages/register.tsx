@@ -17,9 +17,9 @@ const Register: NextPage = () => {
           {
             ({ values, handleChange }) => (
               <Form>
-                <FieldInput name={"username"} onChange={handleChange} value={values.username}/>
-                <FieldInput name={"email"} onChange={handleChange} value={values.username}/>
-                <FieldInput name={"password"} onChange={handleChange} value={values.username}/>
+                <FieldInput label={"Username"} name={"username"} onChange={handleChange} value={values.username}/>
+                <FieldInput label={"Email"} name={"email"} onChange={handleChange} value={values.email}/>
+                <FieldInput label={"Password"} name={"password"} onChange={handleChange} value={values.password}/>
                 <Button colorScheme={"teal"} type={"submit"} isLoading={isSubmitting}>Register</Button>
               </Form>
             )
