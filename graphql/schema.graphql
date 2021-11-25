@@ -1,0 +1,93 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Actor {
+    first_name: String
+    last_name: String!
+}
+
+type Comment {
+    comment_id: ID!
+    content: String!
+    createdAt: String!
+    film_id: Float
+    replies: [Comment!]
+    short_content: String
+    updatedAt: String!
+    user_id: ID!
+}
+
+type Film {
+    actors: [Actor!]
+    category: String
+    comments: [Comment!]
+    description: String!
+    film_id: ID!
+    fulltext: String!
+    language: String
+    language_id: Int!
+    last_update: String!
+    length: Int!
+    rating: String!
+    release_year: String!
+    rental_duration: Int!
+    rental_rate: Float!
+    replacement_cost: Float!
+    special_features: [String!]!
+    title: String!
+}
+
+type Mutation {
+    createComment(content: String!, filmId: Float, parentId: Float): Comment
+    login(input: RegisterInput!): UserResponse
+    logout: Boolean!
+    register(input: RegisterInput!): UserResponse!
+}
+
+type PaginatedFilms {
+    cursor: Float!
+    films: [Film!]!
+}
+
+type Query {
+    checkLogin: User
+    getCommentsByFilmId(filmId: Float!): [Comment!]
+    getFilmByTitle(title: String!): Film
+    getFilms(pagination: PaginationInput!): PaginatedFilms!
+    getFilmsByCategory(categoryName: String!, pagination: PaginationInput!): PaginatedFilms
+    getRepliesOfComment(commentId: Float!): [Comment!]
+    hello: String!
+}
+
+type User {
+    email: String!
+    id: ID!
+    username: String!
+}
+
+type UserResponse {
+    errors: UserResponseError
+    user: User
+}
+
+type UserResponseError {
+    emailError: [String!]
+    genericError: [String!]
+    passError: [String!]
+    userError: [String!]
+}
+
+input PaginationInput {
+    after: Float
+    take: Float
+}
+
+input RegisterInput {
+    email: String!
+    password: String!
+    username: String!
+}
